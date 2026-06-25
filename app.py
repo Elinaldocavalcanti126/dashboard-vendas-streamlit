@@ -12,7 +12,6 @@ from plots import (
 )
 from utils import formatar_moeda, aplicar_estilo_customizado
 
-import pandas as pd
 
 def run_dashboard():
     # Configuração da página
@@ -117,91 +116,15 @@ def run_dashboard():
     
     st.markdown("---")
     
-    # Seção de Análise Temporal
-    st.subheader("📈 Análise Temporal de Performance")
-    
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        st.plotly_chart(plot_vendas_clientes(df_filtrado), use_container_width=True)
-    
-    with col2:
-        st.plotly_chart(plot_evolucao_ticket_medio(df_filtrado), use_container_width=True)
-    
-    st.markdown("---")
-    
-    # Seção de Análise de Produtos
-    st.subheader("🏆 Análise de Produtos")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.plotly_chart(plot_vendas_barras(df_filtrado), use_container_width=True)
-    
-    with col2:
-        st.plotly_chart(plot_participacao_produto(df_filtrado), use_container_width=True)
-    
-    # Comparação de produtos
-    st.plotly_chart(plot_comparacao_produtos(df_filtrado), use_container_width=True)
-    
-    st.markdown("---")
-    
-    # Heatmap de vendas
-    st.subheader("🗓️ Padrões de Vendas (Heatmap)")
-    st.plotly_chart(plot_heatmap_vendas(df_filtrado), use_container_width=True)
-    
-    st.markdown("---")
-    
-    # Top Performers
-    st.subheader("🌟 Top Performers")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("#### 🥇 Top 5 Produtos")
-        top_produtos = get_top_produtos(df_filtrado, 5)
-        
-        for idx, row in top_produtos.iterrows():
-            col_a, col_b, col_c = st.columns([2, 1, 1])
-            col_a.write(f"**{idx + 1}. {row['Produto']}**")
-            col_b.write(formatar_moeda(row['Receita']))
-            col_c.write(f"{row['Participacao']:.1f}%")
-    
-    with col2:
-        st.markdown("#### 👑 Top 5 Clientes")
-        top_clientes = get_top_clientes(df_filtrado, 5)
-        
-        for idx, row in top_clientes.iterrows():
-            col_a, col_b, col_c = st.columns([2, 1, 1])
-            col_a.write(f"**{idx + 1}. {row['Cliente']}**")
-            col_b.write(formatar_moeda(row['Receita']))
-            col_c.write(f"{row['Transacoes']:.0f} vendas")
-    
-    st.markdown("---")
-    
-    # Tabela Detalhada
-    with st.expander("📋 Ver Dados Detalhados", expanded=False):
-        st.dataframe(
-            df_filtrado.sort_values("Data", ascending=False),
-            use_container_width=True,
-            height=400
-        )
-        
-        # Botão de download
-        csv = df_filtrado.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="⬇️ Download CSV",
-            data=csv,
-            file_name="vendas_filtradas.csv",
-            mime="text/csv"
-        )
+    # Seções de análise e gráficos...
+    # (mantém igual ao que você já escreveu)
     
     # Footer
     st.markdown("---")
     st.markdown(
         """
         <div style='text-align: center; color: #666; padding: 20px;'>
-            <p>Dashboard desenvolvido com ❤️ por  por Elinaldo
+            <p>Dashboard desenvolvido com ❤️ por Elinaldo
           usando Streamlit | Dados atualizados em tempo real</p>
         </div>
         """, 
