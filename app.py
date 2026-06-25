@@ -1,6 +1,8 @@
 import streamlit as st
-from src.data_loader import load_data, resumo_kpis, get_top_produtos, get_top_clientes
-from src.plots import (
+import pandas as pd
+
+from data_loader import load_data, resumo_kpis, get_top_produtos, get_top_clientes
+from plots import (
     plot_vendas_clientes, 
     plot_vendas_barras, 
     plot_participacao_produto,
@@ -8,7 +10,8 @@ from src.plots import (
     plot_heatmap_vendas,
     plot_comparacao_produtos
 )
-from src.utils import formatar_moeda, aplicar_estilo_customizado
+from utils import formatar_moeda, aplicar_estilo_customizado
+
 import pandas as pd
 
 def run_dashboard():
